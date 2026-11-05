@@ -1,5 +1,5 @@
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
@@ -9,9 +9,9 @@ def home():
 
 @app.route("/search")
 def search():
-    query = request.args.get("q")
+    query = request.args.get("q", "")
 
-    return f"You searched for: {query}"
+    return render_template("search.html", query=query)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
